@@ -1,14 +1,11 @@
 use itertools::Itertools;
 
 pub(crate) fn part1(inp: &str) -> usize {
-    let nums = parse_input(inp);
-    nums.into_iter().tuple_windows::<(usize, usize)>().filter(|(a, b)| a < b).count()
+    inp.lines().map(|n| n.parse().unwrap()).tuple_windows::<(usize, usize)>().filter(|(a, b)| a < b).count()
 }
 
 fn part2(inp: &str) -> usize {
-    let nums = parse_input(inp);
-    nums.windows(3).map(|w| w.iter().sum())
-        .tuple_windows::<(usize, usize)>().filter(|(a, b)| a < b).count()
+    inp.lines().map(|n| n.parse().unwrap()).collect::<Vec<_>>().windows(3).map(|w| w.iter().sum()).tuple_windows::<(usize, usize)>().filter(|(a, b)| a < b).count()
 }
 
 fn parse_input(inp: &str) -> Vec<usize> {
