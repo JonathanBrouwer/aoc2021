@@ -1,14 +1,20 @@
-use itertools::Itertools;
+use itertools::{iproduct, Itertools};
 
 fn part1(inp: &str) -> usize {
+    solve_part(inp, false)
+}
+
+fn part2(inp: &str) -> usize {
+    solve_part(inp, true)
+}
+
+fn solve_part(inp: &str, maximize: bool) -> usize {
     let (calls, boards) = parse_input(inp);
-    let (_, call, sum) = boards.iter().map(|board| {
+    let (min, max) = boards.iter().map(|board| {
         let mut state = [[false; 5]; 5];
         for (i, call) in calls.iter().enumerate() {
-            for x in 0..5 {
-                for y in 0..5 {
-                    if board.data[x][y] == *call {state[x][y] = true}
-                }
+            for (x, y) in iproduct!(0..5, 0..5) {
+                if board.data[x][y] == *call {state[x][y] = true}
             }
             if is_bingo(&state) {
                 let sum: usize = state.iter().flatten().zip(board.data.iter().flatten()).filter(|(b, _)| !**b).map(|(_, v)| v).sum();
@@ -16,7 +22,8 @@ fn part1(inp: &str) -> usize {
             }
         }
         unreachable!()
-    }).min_by_key(|(i, _, _)| *i).unwrap();
+    }).minmax_by_key(|(i, _, _)| *i).into_option().unwrap();
+    let (_, call, sum) = if maximize {max} else {min};
     call * sum
 }
 
@@ -37,25 +44,9 @@ fn is_bingo(state: &[[bool; 5]; 5]) -> bool {
     return false;
 }
 
-fn part2(inp: &str) -> usize {
-    let (calls, boards) = parse_input(inp);
-    let (_, call, sum) = boards.iter().map(|board| {
-        let mut state = [[false; 5]; 5];
-        for (i, call) in calls.iter().enumerate() {
-            for x in 0..5 {
-                for y in 0..5 {
-                    if board.data[x][y] == *call {state[x][y] = true}
-                }
-            }
-            if is_bingo(&state) {
-                let sum: usize = state.iter().flatten().zip(board.data.iter().flatten()).filter(|(b, _)| !**b).map(|(_, v)| v).sum();
-                return (i, *call, sum)
-            }
-        }
-        unreachable!()
-    }).max_by_key(|(i, _, _)| *i).unwrap();
-    call * sum
-}
+
+
+
 
 fn parse_input(inp: &str) -> (Vec<usize>, Vec<Board>) {
     let lines: Vec<_> = inp.lines().collect();
