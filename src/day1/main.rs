@@ -8,11 +8,6 @@ fn part2(inp: &str) -> usize {
     inp.lines().map(|n| n.parse().unwrap()).collect::<Vec<_>>().windows(3).map(|w| w.iter().sum()).tuple_windows::<(usize, usize)>().filter(|(a, b)| a < b).count()
 }
 
-fn parse_input(inp: &str) -> Vec<usize> {
-    //Parse input into vec
-    return inp.lines().map(|num| num.parse().unwrap()).collect();
-}
-
 #[cfg(test)]
 pub(crate) mod tests {
     use super::*;

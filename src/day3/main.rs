@@ -1,5 +1,3 @@
-use itertools::Itertools;
-use trie_rs::{Trie, TrieBuilder};
 
 fn part1(inp: &str, len: usize) -> usize {
     let input = parse_input(inp);
