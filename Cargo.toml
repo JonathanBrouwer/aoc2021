@@ -17,3 +17,4 @@ debug = true
 itertools = "0.10.1"
 trie-rs = "0.1.1"
 petgraph = "0.6.0"
+lattice-graph = "0.5.1"
