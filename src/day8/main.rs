@@ -16,7 +16,7 @@ fn part2(inp: &str) -> usize {
     input.iter().map(|input| {
         let one = input.0.iter().find(|x| x.len() == 2).unwrap();
         let four = input.0.iter().find(|x| x.len() == 4).unwrap();
-        let seven = input.0.iter().find(|x| x.len() == 7).unwrap();
+        // let seven = input.0.iter().find(|x| x.len() == 7).unwrap();
 
         input.1.iter().map(|test| {
             match test.len() {

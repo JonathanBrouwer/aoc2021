@@ -1,6 +1,5 @@
-use std::collections::{HashMap, HashSet};
-use itertools::{Itertools, max};
-use petgraph::visit::Walker;
+use std::collections::{HashSet};
+use itertools::{Itertools};
 
 fn part1(inp: &str) -> usize {
     let (points, folds) = parse_input(inp);
@@ -50,7 +49,7 @@ fn part2(inp: &str) {
 }
 
 fn parse_input(inp: &str) -> (Vec<(usize, usize)>, Vec<(bool, usize)>) {
-    let mut lines: Vec<&str> = inp.lines().collect();
+    let lines: Vec<&str> = inp.lines().collect();
     let ps: Vec<_> = lines.iter().take_while(|l| **l != "").map(|line| line.split(",").map(|n| n.parse().unwrap()).collect_tuple().unwrap()).collect();
     let is = lines.iter().skip(ps.len() + 1).map(|l| {
         let (t0, t1) = l.split("=").collect_tuple().unwrap();

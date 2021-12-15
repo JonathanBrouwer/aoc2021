@@ -1,5 +1,5 @@
 use std::collections::{HashSet, VecDeque};
-use itertools::{iproduct, Itertools, min};
+use itertools::{iproduct, Itertools};
 
 fn part1(inp: &str) -> usize {
     let input = parse_input(inp);

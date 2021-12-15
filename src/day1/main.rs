@@ -1,10 +1,10 @@
 use itertools::Itertools;
 
-pub(crate) fn part1(inp: &str) -> usize {
+pub fn part1(inp: &str) -> usize {
     inp.lines().map(|n| n.parse().unwrap()).tuple_windows::<(usize, usize)>().filter(|(a, b)| a < b).count()
 }
 
-fn part2(inp: &str) -> usize {
+pub fn part2(inp: &str) -> usize {
     inp.lines().map(|n| n.parse().unwrap()).collect::<Vec<_>>().windows(3).map(|w| w.iter().sum()).tuple_windows::<(usize, usize)>().filter(|(a, b)| a < b).count()
 }
 

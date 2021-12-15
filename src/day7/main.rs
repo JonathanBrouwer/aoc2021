@@ -6,7 +6,7 @@ fn part1(inp: &str) -> usize {
 }
 
 fn part2(inp: &str) -> usize {
-    let mut input = parse_input(inp);
+    let input = parse_input(inp);
     let s: usize = input.iter().sum();
     let cost = |target: usize| input.iter().map(|x| {
         let diff = x.abs_diff(target);

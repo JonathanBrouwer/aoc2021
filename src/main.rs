@@ -1,23 +1,8 @@
-#![feature(iter_advance_by)]
-#![feature(int_abs_diff)]
+use criterion::black_box;
+use aoc2021::day15::main::part2;
 
-mod template;
-mod day1;
-mod day2;
-mod day3;
-mod day4;
-mod day5;
-mod day6;
-mod day7;
-mod day8;
-mod day9;
-mod day10;
-mod day11;
-mod day12;
-mod day13;
-mod day14;
-mod day15;
-
-fn main() {
+pub fn main() {
+    let inp = include_str!("../src/day15/input");
+    part2(black_box(inp));
 
 }
